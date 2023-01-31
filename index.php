@@ -15,9 +15,11 @@
             $transId= $_GET['transactionid'];
             $orderId = $_GET['orderid'];
             $amount = $_GET['amount'];
-
-            $currencyCode = 'ZAR';
+            
+            // Form Values
+            $SiteCode = 'TSTSTE0001';
             $countryCode = 'ZA';
+            $currencyCode = 'ZAR';
             $cancelUrl = "http://demo.ozow.com/cancel.aspx";
             $successUrl = "http://demo.ozow.com/success.aspx";
             $notifyUrl = "http://demo.ozow.com/notify.aspx";
@@ -25,7 +27,7 @@
             $key = "215114531aff7134a94c88ceea48e";
             
             // Concatenate all the post variables && DO NOT CHANGE THIS ORDER
-            $values = "TSTSTE0001".$countryCode.$currencyCode.$amount.$orderId.$transId.$cancelUrl.$successUrl.$notifyUrl.$IsTest.$key;
+            $values = $SiteCode.$countryCode.$currencyCode.$amount.$transId.$orderId.$cancelUrl.$successUrl.$notifyUrl.$IsTest.$key;
             // Convert the above concatenated string to lowercase
             $values = strtolower($values);
             // Generate a SHA512 hash of the lowercase concatenated string
@@ -33,12 +35,12 @@
             
             echo '
             <form action="https://pay.ozow.com" method="POST">
-               <input type="hidden" name="SiteCode" value="TSTSTE0001">
+               <input type="hidden" name="SiteCode" value="'.$SiteCode.'">
                <input type="hidden" name="CountryCode" value="'.$countryCode.'">
                <input type="hidden" name="CurrencyCode" value="'.$currencyCode.'">
                <input type="hidden" name="Amount" value="'.$amount.'">
-               <input type="hidden" name="TransactionReference" value="'.$orderId.'">
-               <input type="hidden" name="BankReference" value="'.$transId.'">
+               <input type="hidden" name="TransactionReference" value="'.$transId.'">
+               <input type="hidden" name="BankReference" value="'.$orderId.'">
                <input type="hidden" name="CancelUrl" value="'.$cancelUrl.'">
                <input type="hidden" name="SuccessUrl" value="'.$successUrl.'"> 
                <input type="hidden" name="NotifyUrl" value="'.$notifyUrl.'"> 
