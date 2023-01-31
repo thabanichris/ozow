@@ -15,9 +15,16 @@
             $transId= $_GET['transactionid'];
             $orderId = $_GET['orderid'];
             $amount = $_GET['amount'];
+            $currency = 'ZAR';
+            $country = 'ZA';
+            $cancelUrl = "http://demo.ozow.com/cancel.aspx";
+            $successUrl = "http://demo.ozow.com/success.aspx";
+            $notifyUrl = "http://demo.ozow.com/notify.aspx";
+            $IsTest = "false";
+            $key = "215114531aff7134a94c88ceea48e";
             
-            // Concatenate all the post variables
-            $values = "TSTSTE0001"."ZA"."ZAR".$amount.$orderId.$transId."http://demo.ozow.com/cancel.aspx"."http://demo.ozow.com/success.aspx"."http://demo.ozow.com/notify.aspx"."false"."215114531aff7134a94c88ceea48e";
+            // Concatenate all the post variables && DO NOT CHANGE THIS ORDER
+            $values = "TSTSTE0001".$country.$currency.$amount.$orderId.$transId.$cancelUrl.$successUrl.$notifyUrl.$IsTest.$key;
             // Convert the above concatenated string to lowercase
             $values = strtolower($values);
             // Generate a SHA512 hash of the lowercase concatenated string
